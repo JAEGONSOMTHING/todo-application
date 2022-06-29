@@ -12,7 +12,7 @@ public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(table = "user", name = "id")
+    @JoinColumn(table = "account", name = "id")
     private Long userId;
     @JoinColumn(table = "project", name = "id")
     private Long projectId;

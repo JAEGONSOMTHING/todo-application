@@ -1,6 +1,7 @@
 package com.example.todoapplication.project.comment;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,13 +12,13 @@ import javax.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Entity
-
+@NoArgsConstructor
 public class IssueComment{
     @Id
     @GeneratedValue
     private Long id;
 
-    @JoinColumn(table = "user",name = "id")
+    @JoinColumn(table = "account",name = "id")
     private Long userId;
 
     private String content;
@@ -33,4 +34,6 @@ public class IssueComment{
         this.content = content;
         this.issueId = issueId;
     }
+
+
 }

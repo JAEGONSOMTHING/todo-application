@@ -25,8 +25,8 @@ public class Todo {
 
     @JoinColumn(table = "project", name = "id")
     private Long projectId;
-    @JoinColumn(table = "user", name = "id")
-    private Long userId;
+    @JoinColumn(table = "account", name = "id")
+    private Long accountId;
     private String title;
     private String content;
     private LocalDateTime time;

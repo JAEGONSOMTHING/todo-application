@@ -18,7 +18,7 @@ public class TodoComment{
     @GeneratedValue
     private Long id;
 
-    @JoinColumn(table = "user",name = "id")
+    @JoinColumn(table = "account",name = "id")
     private Long userId;
 
     private String content;

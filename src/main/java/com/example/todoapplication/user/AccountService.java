@@ -41,9 +41,9 @@ public class AccountService implements UserDetailsService {
     }
 
 
-    public AccountDto changeUserProfile(Long userId, AccountDto accountDto){
+    public AccountDto changeUserProfile(Long accountId, AccountDto accountDto){
 
-        Account account = accountRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not exist"));
+        Account account = accountRepository.findById(accountId).orElseThrow(() -> new IllegalArgumentException("User not exist"));
         accountMapper.updateFromDto(accountDto, account);
         return accountMapper.toDto(account);
     }

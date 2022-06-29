@@ -20,7 +20,7 @@ public class ProjectParticipant {
     @JoinColumn(table = "project", name = "id")
     private Long projectId;
 
-    @JoinColumn(table = "user", name = "id")
+    @JoinColumn(table = "account", name = "id")
     private Long userId;
 
     @Enumerated(EnumType.STRING)
