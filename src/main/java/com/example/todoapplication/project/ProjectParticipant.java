@@ -18,18 +18,18 @@ public class ProjectParticipant {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Project project;
+    @JoinColumn(table = "project", name = "id")
+    private Long projectId;
 
-    @ManyToOne
-    private User user;
+    @JoinColumn(table = "user", name = "id")
+    private Long userId;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public ProjectParticipant(Project project, User user, Role role) {
-        this.project = project;
-        this.user = user;
+    public ProjectParticipant(Long projectId, Long userId, Role role) {
+        this.projectId = projectId;
+        this.userId = userId;
         this.role = role;
     }
 }

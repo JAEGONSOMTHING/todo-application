@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Getter
 public class Project {
 
 
@@ -32,15 +33,7 @@ public class Project {
     private LocalDateTime endTime;
     private boolean isPublic;
 
-
-
-    public ProjectDto toDto(){
-        ProjectDto projectDto = new ProjectDto();
-        projectDto.setName(name);
-        projectDto.setDescription(description);
-        projectDto.setStartTime(startTime);
-        projectDto.setEndTime(endTime);
-        projectDto.setPublic(isPublic);
-        return projectDto;
+    public void generateInviteCode() {
+        this.inviteCode = UUID.randomUUID().toString();
     }
 }
