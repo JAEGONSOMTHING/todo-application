@@ -1,11 +1,10 @@
 package com.example.todoapplication.project;
 
-import com.example.todoapplication.user.User;
+import com.example.todoapplication.user.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -15,18 +14,18 @@ public class ProjectService {
     private final ProjectParticipantRepository participantRepository;
     private final ProjectMapper projectMapper;
 
-    public ProjectDto createProject(ProjectDto projectDto, User user) {
+    public ProjectDto createProject(ProjectDto projectDto, Account account) {
         Project project = projectMapper.toEntity(projectDto);
         project.generateInviteCode();
         projectRepository.save(project);
 
-        setCreatorToProjectManager(user, project);
+        setCreatorToProjectManager(account, project);
 
         return projectMapper.toDto(project);
     }
 
-    private void setCreatorToProjectManager(User user, Project project) {
-        participantRepository.save(new ProjectParticipant(project.getId(), user.getId(), ProjectParticipant.Role.MANAGER));
+    private void setCreatorToProjectManager(Account account, Project project) {
+        participantRepository.save(new ProjectParticipant(project.getId(), account.getId(), ProjectParticipant.Role.MANAGER));
     }
 
     public void deleteProject(Long projectId) {
@@ -39,15 +38,15 @@ public class ProjectService {
         return projectMapper.toDto(project);
     }
 
-    public void inviteUserByInviteCode(String inviteCode, User user) {
+    public void inviteUserByInviteCode(String inviteCode, Account account) {
         Project project = projectRepository.findByInviteCode(inviteCode).orElseThrow(() -> new IllegalArgumentException("Project not exist"));
-        if (userIsNotParticipant(project, user)) {
-            participantRepository.save(new ProjectParticipant(project.getId(), user.getId(), ProjectParticipant.Role.PARTICIPANT));
+        if (userIsNotParticipant(project, account)) {
+            participantRepository.save(new ProjectParticipant(project.getId(), account.getId(), ProjectParticipant.Role.PARTICIPANT));
         }
     }
 
-    private boolean userIsNotParticipant(Project project, User user) {
-        return !participantRepository.existsByProjectIdAndUserId(project.getId(), user.getId());
+    private boolean userIsNotParticipant(Project project, Account account) {
+        return !participantRepository.existsByProjectIdAndUserId(project.getId(), account.getId());
     }
 
 

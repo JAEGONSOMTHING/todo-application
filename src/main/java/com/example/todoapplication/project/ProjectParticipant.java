@@ -1,6 +1,5 @@
 package com.example.todoapplication.project;
 
-import com.example.todoapplication.user.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

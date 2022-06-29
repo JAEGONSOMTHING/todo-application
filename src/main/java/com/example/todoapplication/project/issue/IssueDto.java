@@ -1,13 +1,11 @@
 package com.example.todoapplication.project.issue;
 
-import com.example.todoapplication.project.Project;
-import com.example.todoapplication.project.todo.Todo;
-import com.example.todoapplication.user.User;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.ManyToOne;
 
-@Data
+@Getter
+@Setter
 public class IssueDto {
 
     private Long id;

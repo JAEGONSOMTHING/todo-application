@@ -1,7 +1,5 @@
 package com.example.todoapplication.project.todo;
 
-import com.example.todoapplication.project.Project;
-import com.example.todoapplication.user.User;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 

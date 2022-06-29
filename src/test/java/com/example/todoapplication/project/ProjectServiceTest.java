@@ -1,27 +1,14 @@
 package com.example.todoapplication.project;
 
-import com.example.todoapplication.user.User;
-import com.example.todoapplication.user.UserRepository;
+import com.example.todoapplication.user.Account;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.parameters.P;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.util.ReflectionTestUtils;
-
-import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceTest {
@@ -41,7 +28,7 @@ class ProjectServiceTest {
     @Test
     void successCreateProjectTest(){
         //given
-        User user = new User();
+        Account account = new Account();
         ProjectDto projectDto = new ProjectDto();
         projectDto.setName("test");
         projectDto.setDescription("createTest");
@@ -50,7 +37,7 @@ class ProjectServiceTest {
         projectDto.setPublic(true);
 
         //when
-        ProjectDto returnDto = projectService.createProject(projectDto, user);
+        ProjectDto returnDto = projectService.createProject(projectDto, account);
 
         //then
         Assertions.assertTrue(projectDto.getName().equals(returnDto.getName()));

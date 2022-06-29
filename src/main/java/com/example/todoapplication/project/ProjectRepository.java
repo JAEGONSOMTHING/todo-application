@@ -1,6 +1,5 @@
 package com.example.todoapplication.project;
 
-import com.example.todoapplication.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,10 +1,8 @@
-package com.example.todoapplication.project;
+package com.example.todoapplication.user;
 
 import com.example.todoapplication.util.GenericMapper;
-
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ProjectMapper extends GenericMapper<ProjectDto, Project> {
-
+public interface AccountMapper extends GenericMapper<AccountDto, Account> {
 }

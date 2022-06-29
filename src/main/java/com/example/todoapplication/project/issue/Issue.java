@@ -1,17 +1,14 @@
 package com.example.todoapplication.project.issue;
 
-import com.example.todoapplication.project.Project;
-import com.example.todoapplication.project.todo.Todo;
-import com.example.todoapplication.user.User;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 public class Issue {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +31,13 @@ public class Issue {
         this.content = content;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.todoapplication.project.comment;
 
-import com.example.todoapplication.project.issue.Issue;
-import com.example.todoapplication.user.User;
+import com.example.todoapplication.user.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +10,8 @@ public class CommentService {
     private final TodoCommentRepository todoCommentRepository;
     private final IssueCommentRepository issueCommentRepository;
 
-    public IssueComment issueCreateComment(Long issueId, String content, User user){
-        IssueComment comment = new IssueComment(user.getId(),content,issueId);
+    public IssueComment issueCreateComment(Long issueId, String content, Account account){
+        IssueComment comment = new IssueComment(account.getId(),content,issueId);
 
         return issueCommentRepository.save(comment);
     }
