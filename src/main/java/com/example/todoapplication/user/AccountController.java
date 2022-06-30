@@ -19,7 +19,6 @@ public class AccountController {
         log.info(accountDto.getEmail());
         accountService.signUpUser(accountDto);
 
-
         return ResponseEntity.accepted().body("welcome");
     }
 

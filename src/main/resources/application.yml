@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,4 +15,9 @@ server:
   port: 8080
 
 sse:
-  default_timeout : 86400
+  default_timeout: 86400
+
+auth:
+  token:
+    experation-time: 8640000
+    secret-key: jaegon

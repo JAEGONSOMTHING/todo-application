@@ -20,7 +20,5 @@ public class UserAccount extends User {
     public UserAccount(Account account) {
         super(account.getEmail(), account.getPassword(), Collections.emptyList());
         this.account = account;
-        System.out.println(account);
-        System.out.println("@!#@!#!");
     }
 }

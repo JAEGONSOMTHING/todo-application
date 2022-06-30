@@ -44,7 +44,11 @@ public class AccountService implements UserDetailsService {
     public AccountDto changeUserProfile(Long accountId, AccountDto accountDto){
 
         Account account = accountRepository.findById(accountId).orElseThrow(() -> new IllegalArgumentException("User not exist"));
+
         accountMapper.updateFromDto(accountDto, account);
+        String encodedPassword = passwordEncoder.encode(accountDto.getPassword());
+        account.setPassword(encodedPassword);
+
         return accountMapper.toDto(account);
     }
 

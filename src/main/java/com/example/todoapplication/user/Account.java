@@ -4,6 +4,8 @@ package com.example.todoapplication.user;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 
@@ -24,16 +26,19 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50)
+    @Size(min = 2, max = 20)
     private String email;
-
+    @Column(length = 50)
+    @Size(min = 2, max = 20)
     private String nickname;
 
     private String password;
-
+    @Column(nullable = true)
     private String picture;
 
-
     private boolean isCertificated;
+
     private String authenticationKey;
 
     public void changeAuthenticationKey(){
