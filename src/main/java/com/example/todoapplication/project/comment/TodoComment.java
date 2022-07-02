@@ -28,4 +28,8 @@ public class TodoComment{
 
     @JoinColumn(table = "todo", name="id")
     private Long todoId;
+
+    public TodoComment(Long userId, String content, Long todoId) {
+
+    }
 }

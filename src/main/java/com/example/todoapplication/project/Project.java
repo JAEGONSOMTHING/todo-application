@@ -1,22 +1,29 @@
 package com.example.todoapplication.project;
 
 import lombok.*;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Project {
-
+    @Builder
+    public Project(String inviteCode, String name, String description, LocalDateTime startTime, LocalDateTime endTime, boolean publicOption) {
+        this.inviteCode = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.publicOption = publicOption;
+        verifyStarTimeIsBeforeEndTime();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,27 +33,27 @@ public class Project {
 
 
     private String description;
+
+    @NotNull
     private LocalDateTime startTime;
+    @NotNull
     private LocalDateTime endTime;
-    private boolean isPublic;
+    private boolean publicOption;
 
-    public void generateInviteCode() {
-        this.inviteCode = UUID.randomUUID().toString();
+    public void setPublicOption(boolean publicOption) {
+        this.publicOption = publicOption;
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    private static String generateInviteCode() {
+        return UUID.randomUUID().toString();
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+
+    private void verifyStarTimeIsBeforeEndTime() {
+        if (startTime == null || endTime == null || startTime.isAfter(endTime)) {
+            throw new IllegalArgumentException("check the time");
+        }
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
 }

@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-public class Todo {
+public class Todo{
+
+
 
     enum Status{
         TODO, IN_PROGRESS, IN_REVIEW, DONE;

@@ -10,9 +10,13 @@ public class CommentService {
     private final TodoCommentRepository todoCommentRepository;
     private final IssueCommentRepository issueCommentRepository;
 
-    public IssueComment issueCreateComment(Long issueId, String content, Account account){
+    public IssueComment CreateIssueComment(Long issueId, String content, Account account){
         IssueComment comment = new IssueComment(account.getId(),content,issueId);
 
         return issueCommentRepository.save(comment);
+    }
+    public TodoComment createTodoComment(Long todoId, String content, Account account){
+        TodoComment comment = new TodoComment(account.getId(),content,todoId);
+        return todoCommentRepository.save(comment);
     }
 }

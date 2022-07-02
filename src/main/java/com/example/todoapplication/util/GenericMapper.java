@@ -1,14 +1,7 @@
 package com.example.todoapplication.util;
 
 
-
-
-
-
-
-import org.mapstruct.BeanMapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 
 
 public interface GenericMapper<D, E> {

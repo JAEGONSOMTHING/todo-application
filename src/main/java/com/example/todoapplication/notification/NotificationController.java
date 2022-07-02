@@ -1,9 +1,8 @@
 package com.example.todoapplication.notification;
 
-import com.example.todoapplication.security.CurrentUser;
+import com.example.todoapplication.annotation.CurrentUser;
 import com.example.todoapplication.user.Account;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;

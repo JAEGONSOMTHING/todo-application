@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Issue {
+public class Issue{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +38,7 @@ public class Issue {
     public void setContent(String content) {
         this.content = content;
     }
+
 
 
 }

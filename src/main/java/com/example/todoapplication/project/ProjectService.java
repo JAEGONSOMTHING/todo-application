@@ -14,18 +14,18 @@ public class ProjectService {
     private final ProjectParticipantRepository participantRepository;
     private final ProjectMapper projectMapper;
 
-    public ProjectDto createProject(ProjectDto projectDto, Account account) {
+    public ProjectDto createProject(ProjectDto projectDto, Long accountId) {
         Project project = projectMapper.toEntity(projectDto);
-        project.generateInviteCode();
+
         projectRepository.save(project);
 
-        setCreatorToProjectManager(account, project);
+        setCreatorToProjectManager(accountId, project);
 
         return projectMapper.toDto(project);
     }
 
-    private void setCreatorToProjectManager(Account account, Project project) {
-        participantRepository.save(new ProjectParticipant(project.getId(), account.getId(), ProjectParticipant.Role.MANAGER));
+    private void setCreatorToProjectManager(Long accountId, Project project) {
+        participantRepository.save(new ProjectParticipant(project.getId(), accountId, ProjectParticipant.Role.MANAGER));
     }
 
     public void deleteProject(Long projectId) {

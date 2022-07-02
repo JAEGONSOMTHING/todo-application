@@ -13,5 +13,5 @@ public class ProjectDto {
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private boolean isPublic;
+    private Boolean publicOption;
 }

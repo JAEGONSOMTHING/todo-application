@@ -1,7 +1,5 @@
 package com.example.todoapplication.project.issue;
 
-import com.example.todoapplication.project.ProjectParticipant;
-import com.example.todoapplication.project.ProjectParticipantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,6 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class IssueService {
     private final IssueRepository issueRepository;
-    private final ProjectParticipantRepository participantRepository;
     private final IssueMapper issueMapper;
 
     public IssueDto createIssue(IssueDto issueDto) {

@@ -1,23 +1,28 @@
 package com.example.todoapplication.project;
 
-import com.example.todoapplication.user.Account;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceTest {
     @Mock
-    private ProjectRepository projectRepository;
+    ProjectRepository projectRepository;
     @Mock
-    private ProjectParticipantRepository projectParticipantRepository;
+    ProjectParticipantRepository projectParticipantRepository;
+    @Spy
+    ProjectMapperImpl projectMapper;
     @InjectMocks
-    private ProjectService projectService;
+    ProjectService projectService;
 
 
 
@@ -25,26 +30,38 @@ class ProjectServiceTest {
 
     }
 
+    @DisplayName("프로젝트 생성 성공")
     @Test
     void successCreateProjectTest(){
-        //given
-        Account account = new Account();
+
         ProjectDto projectDto = new ProjectDto();
         projectDto.setName("test");
         projectDto.setDescription("createTest");
         projectDto.setStartTime(LocalDateTime.of(2000,3,15,00,00));
         projectDto.setEndTime(LocalDateTime.of(2000,3,16,00,00));
-        projectDto.setPublic(true);
+        projectDto.setPublicOption(true);
 
         //when
-        ProjectDto returnDto = projectService.createProject(projectDto, account);
+        ProjectDto returnDto = projectService.createProject(projectDto, 1L);
+
 
         //then
-        Assertions.assertTrue(projectDto.getName().equals(returnDto.getName()));
-        Assertions.assertTrue(projectDto.getStartTime().equals(returnDto.getStartTime()));
-        Assertions.assertTrue(projectDto.getEndTime().equals(returnDto.getEndTime()));
-        Assertions.assertTrue(projectDto.getDescription().equals(returnDto.getDescription()));
-        Assertions.assertTrue(projectDto.isPublic() == returnDto.isPublic());
+        assertThat(projectDto).usingRecursiveComparison().isEqualTo(returnDto);
+
     }
+    @DisplayName("시간 잘못 입력 프로젝트 생성 실패")
+    @Test
+    void createProjectFail(){
+        ProjectDto projectDto = new ProjectDto();
+        projectDto.setName("test");
+        projectDto.setDescription("createTest");
+        projectDto.setStartTime(LocalDateTime.of(2000,3,15,00,00));
+        projectDto.setEndTime(LocalDateTime.of(2000,3,13,00,00));
+        projectDto.setPublicOption(true);
+
+        assertThrows(IllegalArgumentException.class, ()->projectService.createProject(projectDto,1L));
+
+    }
+
 
 }
